@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>hotlin.es</title>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#000">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <link href="https://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .window {
+            min-width: 440px;
+        }
+        .window-wrapper {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 1rem;
+        }
+    </style>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            window.location.href = "mainpage.html"; 
+        }
+    </script>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="win7.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="window active">
+        <div class="window-toolbar">
+            <div class="window-title" style="text-align: start;">Welcome To Windows</div>
+            <div class="window-buttons">
+                <div class="window-button close"></div>
+                <div class="window-button help"></div>
+            </div>
+        </div>
+        <div class="window-wrapper">
+            <img src="https://vile.sh/images/icons/password.png" style="width: 54px; height: 51px;">
+            <form id="login" style="margin-left: 2rem;">
+                <div style="color: black;">
+                    <p style="margin-bottom: 1rem;">Type a user name and password to log on to Windows.</p>
+                    <div class="field-row">
+                        <label for="username">Username</label>
+                        <input id="username" type="text" style="margin-left: 1rem; width: 10rem;">
+                    </div>
+                    <div class="field-row">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" style="margin-left: 1rem; width: 10rem;">
+                    </div>
+                </div>
+            </form>
+            <div style="width: 20%; text-align: center;">
+                <button onclick="login()" style="margin-bottom: 0.2rem;" class="window-action-button main">OK</button>
+                <button type="reset" form="login" class="window-action-button main">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

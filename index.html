@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ucantfindus</title>
+    <link rel="stylesheet" href="crt.css">
+    
+    <style>
+        @font-face {
+            font-family: 'VCR_OSD_MONO';
+            src: url('VCR_OSD_MONO_1.001.ttf') format('truetype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'VCR_OSD_MONO', monospace;
+        }
+
+        body {
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .noise, .lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        .noise {
+            z-index: 400;
+            opacity: 0.8;
+            background: url('https://ice-creme.de/images/background-noise.png');
+            animation: noise 1s infinite alternate;
+        }
+
+        .lines {
+            z-index: 300;
+            opacity: 0.6;
+            background: linear-gradient(to bottom, transparent 50%, rgba(255, 255, 255, 0.1) 51%);
+            background-size: 100% 4px;
+            animation: scanlines 10s linear infinite;
+        }
+
+        .main {
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-family: 'VCR_OSD_MONO', monospace;
+            color: #fff;
+            font-size: 2rem;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 200;
+            padding: 20px 0;
+        }
+
+        .title {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        .audwin {
+            max-width: 650px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .audio-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .controls a img {
+            height: 13px;
+            cursor: pointer;
+        }
+        
+        .controls {
+            user-select: none;
+        }
+
+        #songInfo {
+            font-family: 'VCR OSD Mono';
+            font-size: 12px;
+        }
+
+        #songTitle {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #songInfo {
+            display: flex;
+        }
+
+        .characters-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1200px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .character {
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            will-change: transform, text-shadow;
+            animation: rgbText 2s steps(9) infinite alternate;
+        }
+
+        .character img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .character:hover img {
+            transform: scale(1.1);
+        }
+
+        .character:hover {
+            transform: scale(1.1);
+        }
+
+        .character-name {
+            margin-top: 10px;
+            font-size: 1.5rem;
+        }
+
+        .character-quote {
+            margin-top: 5px;
+            font-size: 1rem;
+            color: #2b52ff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .character:hover .character-quote {
+            opacity: 1;
+        }
+
+        .social-media-button {
+            margin-top: 10px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .social-media-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-media-button:hover {
+            transform: scale(1.2);
+        }
+
+        .footer {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="lines"></div>
+
+    <div class="main">
+        <div class="title">hotlin.es</div>
+
+        
+        <div class="audwin">
+            <div class="audio-controls">
+                <p style="font-size:13px;margin-bottom:5px;">Now Playing:</p>
+                <div id="songInfo" class="text-center">
+                    <div id="artist">Artist</div>&nbsp;-&nbsp;<div id="songTitle">Song</div>
+                </div>
+                <div class="controls" style="margin-top:10px;margin-bottom:7px;">
+                    <a onclick="previousAudio()" style="margin-right:10px;"><img src="back.png"></a>
+                    <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="play.png"></a>
+                    <a onclick="nextAudio()"><img src="next.png"></a>
+                </div>
+            </div>
+        </div>
+
+        <audio id="audio"></audio>
+
+        <div class="characters-container">
+            <div class="character">
+                <img src="leakage.png" alt="Leak">
+                <div class="character-name">leak</div>
+                <div class="character-quote">"government rapist"</div>
+                <a href="https://doxbin.com/user/threatscape" target="_blank">
+                    <button class="social-media-button">
+                        <img src="doxbin.png" alt="doxbin">
+                    </button>
+                </a>
+            </div>
+
+            <div class="character">
+                <img src="leak.webp" alt="tosen">
+                <div class="character-name">tosen</div>
+                <div class="character-quote">"1 man 1 thinkpad"</div>
+                <a href="https://doxbin.org/user/warboy" target="_blank">
+                    <button class="social-media-button">
+                        <img src="doxbin.png" alt="doxbin">
+                    </button>
+                </a>
+            </div>
+
+            <div class="character">
+                <img src="lukas.jpg" alt="luke">
+                <div class="character-name">luke</div>
+                <div class="character-quote">"rofl"</div>
+                <a href="https://t.me/stupidlittleboy" target="_blank">
+                    <button class="social-media-button">
+                        <img src="telegram.png" alt="tele">
+                    </button>
+                </a>
+            </div>
+
+            <div class="character">
+                <img src="jah.png" alt="religion">
+                <div class="character-name">religion</div>
+                <div class="character-quote">"born of one emotion"</div>
+                <a href="https://t.me/burnernumber" target="_blank">
+                    <button class="social-media-button">
+                        <img src="telegram.png" alt="tele">
+                    </button>
+                </a>
+            </div>
+
+            <div class="character">
+                <img src="skibidi.jpg" alt="religion">
+                <div class="character-name">ja</div>
+                <div class="character-quote">"placeholder"</div>
+                <a href="https://t.me/burnernumber" target="_blank">
+                    <button class="social-media-button">
+                        <img src="telegram.png" alt="tele">
+                    </button>
+                </a>
+            </div>
+
+            <div class="character">
+                <img src="ego.jpg" alt="ego">
+                <div class="character-name">ego</div>
+                <div class="character-quote">"my butthole itches...."</div>
+                <a href="https://t.me/ccintgod" target="_blank">
+                    <button class="social-media-button">
+                        <img src="telegram.png" alt="telegram">
+                    </button>
+                </a>
+            </div>
+            
+            <div class="characters-container">
+                <div class="character">
+                    <img src="pitt.jpg" alt="sen">
+                    <div class="character-name">sen</div>
+                    <div class="character-quote">"cut radically different."</div>
+                    <a href="https://t.me/detracingretards" target="_blank">
+                        <button class="social-media-button">
+                            <img src="telegram.png" alt="doxbin">
+                        </button>
+                    </a>
+                </div>
+
+            
+           
+            
+        </div>
+    </div>
+
+    <script src="music.js"></script>
+    <script>
+         window.addEventListener('message', function(event) {
+          if (event.data === 'playMusic') {
+              document.getElementById('overlays').style.display = 'none';
+              
+              playMedia();
+          }
+      });
+    </script>
+</body>
+</html>
