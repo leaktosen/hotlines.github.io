@@ -31,6 +31,12 @@ var audioFiles = [
         artist: "Yeat (leak)",
         song: "Twizzy Rich"
         },
+        {
+        src: "songs/oj.mp3",
+        artist: "osamason",
+        song: "oj simpson"
+        },
+    
     
 
         
