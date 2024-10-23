@@ -54,10 +54,10 @@ function playMedia() {
 function togglePlayPause() {
     if (audio.paused) {
         audio.play();
-        playPauseButton.innerHTML = "<img src='pause.png'>";
+        playPauseButton.innerHTML = "<img src='icons/pause.png'>";
     } else {
         audio.pause();
-        playPauseButton.innerHTML = "<img src='play.png'>";
+        playPauseButton.innerHTML = "<img src='icons/play.png'>";
     }
 }
 
