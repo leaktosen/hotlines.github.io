@@ -8,36 +8,30 @@ var audioFiles = [
         },
         {
         src: "songs/elfen.mp3",
-        artist: "Hi-C (luke)",
+        artist: "Hi-C",
         song: "elfen lied 222"
         },
         {
         src: "songs/shotgun.mp3",
-        artist: "Sematary (tosen)",
+        artist: "Sematary",
         song: "Shotgun"
         },
         {
-        src: "songs/blv.mp3",
-        artist: "glokk40spaz(religion)",
-        song: "BLV Anthem"
+        src: "songs/bah.mp3",
+        artist: "Sematary",
+        song: "Broken Angel Hospital"
         },
         {
-        src: "songs/manny.mp3",
-        artist: "Nemzzz (Sen)",
-        song: "8AM IN MANNY"
+        src: "songs/finale.mp3",
+        artist: "Dante Red",
+        song: "Finale"
         },
         {
-        src: "songs/twizzy.mp3",
-        artist: "Yeat (leak)",
-        song: "Twizzy Rich"
-        },
-        {
-        src: "songs/oj.mp3",
-        artist: "osamason",
-        song: "oj simpson"
-        },
-    
-    
+        src: "songs/hallow.mp3",
+        artist: "Buckshot",
+        song: "Hallow'd Ground"
+            },
+
 
         
 ];
@@ -60,10 +54,10 @@ function playMedia() {
 function togglePlayPause() {
     if (audio.paused) {
         audio.play();
-        playPauseButton.innerHTML = "<img src='icons/pause.png'>";
+        playPauseButton.innerHTML = "<img src='pause.png'>";
     } else {
         audio.pause();
-        playPauseButton.innerHTML = "<img src='icons/play.png'>";
+        playPauseButton.innerHTML = "<img src='play.png'>";
     }
 }
 
