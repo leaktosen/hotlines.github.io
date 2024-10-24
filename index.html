@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="icon" type="image/x-icon" href="ghost.png">
-  <title>hotlin.es</title>
-  <meta property="og:image" content="ghost.png">
+  <title>Windows 95 Desktop</title>
   <link rel="stylesheet" href="https://jdan.github.io/98.css/98.css">
-  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
   <link rel="preload" href="crt.css" as="style">  
   <style>
         @font-face {
@@ -236,7 +233,79 @@
             display: flex;
         }
 
-    
+        body:before {
+	content: "";
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 1000;
+	background-image: url(overlay.png);
+	background-repeat: all;
+	background-position: 0px 0px;
+	animation-name: Static;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: steps(4);
+	box-shadow: inset 0px 0px 10em rgba(0,0,0,0.4);
+}
+
+body:after {
+	content: "";
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 1000;
+	background-image: url(overlay2.png);
+	background-repeat: all;
+	background-position: 0px 0px;
+	animation-name: Static;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: steps(4);
+}
+
+@keyframes Static {
+	0% { background-position: 0px 0px; }
+	100% { background-position: 0px 4px; }
+}
+
+
+#overlay-image {
+        position: absolute;
+        bottom: 40px; 
+        left: 3%;
+        z-index: 20;
+        width: 500px;
+    }
+
+    #animated-text {
+        position: absolute;
+        bottom: 300px; 
+        left: 28%;
+        z-index: 21;
+        font-family: url('countdown.ttf'), sans-serif;
+        font-size: 36px; 
+        color: white;
+        text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; 
+        box-shadow: #000;
+        white-space: nowrap;
+    }
+
+    @keyframes blinkCursor {
+        from { border-right-color: white; }
+        to { border-right-color: transparent; }
+    }
+
+    .typed-text {
+        border-right: 2px solid white;
+        animation: blinkCursor 0.7s step-end infinite;
+    }
   </style>
 </head>
 <body>
@@ -244,6 +313,8 @@
     <div class="noise"></div>
     <div class="lines"></div>
 
+    <img src="lain.png" alt="Overlay Image" id="overlay-image">
+    <div id="animated-text" class="typed-text"></div>
     
 
     
@@ -286,9 +357,9 @@
                 <div id="artist">Artist</div>&nbsp;-&nbsp;<div id="songTitle">Song</div>
             </div>
             <div class="controls" style="margin-top:10px;margin-bottom:7px;">
-                <a onclick="previousAudio()" style="margin-right:10px;"><img src="icons/back.png"></a>
-                <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="icons/play.png"></a>
-                <a onclick="nextAudio()"><img src="icons/next.png"></a>
+                <a onclick="previousAudio()" style="margin-right:10px;"><img src="back.png"></a>
+                <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="play.png"></a>
+                <a onclick="nextAudio()"><img src="next.png"></a>
             </div>
         </div>
     </div>
@@ -366,7 +437,6 @@
           <br>
           <p>Tosen - "call me buddy cave your face in"</p>
           <div class="social-media-buttons">
-            
             <button onclick="window.open('https://t.me/aesencrypt')">Telegram</button>
           </div>
         </div>
@@ -434,17 +504,55 @@
     </div>
   </div>
 
-  <crt id="crt">   
-
-  </crt>
+  
 
   <script src="music.js"></script>
   <script>
 
+
+const phrases = [
+    "unlink the world, unlock the rest",
+    "explore the unseen, reveal the hidden",
+    "embrace the void, transcend the limits",
+    "follow the ghost, find the way"
+  ];
+  
+  let currentPhraseIndex = 0;
+  let index = 0;
+  let isDeleting = false;
+
+  function typeText() {
+    const animatedText = document.getElementById('animated-text');
+    const currentPhrase = phrases[currentPhraseIndex];
+
+    if (!isDeleting && index < currentPhrase.length) {
+      animatedText.textContent = currentPhrase.slice(0, index + 1);
+      index++;
+      setTimeout(typeText, 100); 
+    } else if (isDeleting && index >= 0) {
+      animatedText.textContent = currentPhrase.slice(0, index);
+      index--;
+      setTimeout(typeText, 50); 
+    } else if (index === currentPhrase.length) {
+      isDeleting = true;
+      setTimeout(typeText, 1000); 
+    } else if (index === -1) {
+      isDeleting = false;
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+      setTimeout(typeText, 500); 
+    }
+  }
+
+  
+  window.onload = () => {
+    typeText();
+  };
+
+
     function garfieldify() {
         window.location.href = 'garfield.html';
     }
-    
+
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
             document.querySelector('#window6 .loading').style.display = 'none'; 
