@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
-  <link rel="icon" type="image/x-icon" href="garf.png">
   <title>hotlin.es</title>
   <link rel="stylesheet" href="https://jdan.github.io/98.css/98.css">
   <link rel="preload" href="crt.css" as="style">  
@@ -308,10 +306,96 @@ body:after {
         border-right: 2px solid white;
         animation: blinkCursor 0.7s step-end infinite;
     }
+
+    #header {
+    position: relative;
+    z-index: 1;
+}
+
+#headerbar {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 20px; 
+    background-color: #000;
+    box-shadow: 0px 1px #FFF, 0px 2px #000;
+    overflow: hidden;
+}
+
+#headerstatus {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+#headerfade_left {
+    position: fixed;
+    left: 150px;
+    top: 0;
+    z-index: 1;
+}
+
+#headernews {
+    font-family: Heading, sans-serif;
+    font-size: 16px;
+    letter-spacing: -1px;
+    color: white;
+    white-space: nowrap;
+    line-height: 20px; 
+}
+
+.news-item {
+    display: inline-block;
+    margin-left: 20px; 
+}
+
+.newssep {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+
   </style>
 </head>
 <body>
 
+    <div id="header">
+        <div id="headerbar">
+            <a href="/status">
+                <img id="headerstatus" src="status-ok.png" />
+            </a>
+            <img id="headerfade_left" src="fade-left.png">
+            <marquee truespeed scrolldelay="30" scrollamount="3" id="headernews">
+                <span class="news-item">
+                    <img class="newssep" src="sep.png">
+                    Welcome to Hotlin.es homepage
+                </span>
+                <span class="news-item">
+                    <img class="newssep" src="sep.png">
+                    <span style="color: lime">im pretty cool</span>
+                </span>
+                <span class="news-item">
+                    <img class="newssep" src="sep.png">
+                    <span style="color: lime">i really like manga</span>
+                </span>
+                <span class="news-item">
+                    <img class="newssep" src="sep.png">
+                    im interested in webdev :p
+                </span>
+                <span class="news-item">
+                    <img class="newssep" src="sep.png">
+                    i like haunted mound
+                </span>
+                <span class="news-item">
+                    <img class="newssep" src="sep.png">
+                    Life is linked.
+                </span>
+            </marquee>
+        </div>
+    </div>
+    
     <div class="noise"></div>
     <div class="lines"></div>
 
@@ -350,6 +434,12 @@ body:after {
         <img src="garf.png" alt="garf">
         <div>Garfield</div>
       </div>
+
+    <div class="desktop-icon" onclick="createManiaWindows()">
+        <img src="warn.png" alt="Mania">
+        <div>Mania</div>
+      </div>
+      
   
 
     <div class="audwin">
@@ -359,9 +449,9 @@ body:after {
                 <div id="artist">Artist</div>&nbsp;-&nbsp;<div id="songTitle">Song</div>
             </div>
             <div class="controls" style="margin-top:10px;margin-bottom:7px;">
-                <a onclick="previousAudio()" style="margin-right:10px;"><img src="icons/back.png"></a>
-                <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="icons/play.png"></a>
-                <a onclick="nextAudio()"><img src="icons/next.png"></a>
+                <a onclick="previousAudio()" style="margin-right:10px;"><img src="back.png"></a>
+                <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="play.png"></a>
+                <a onclick="nextAudio()"><img src="next.png"></a>
             </div>
         </div>
     </div>
@@ -386,8 +476,6 @@ body:after {
         </ul>
       </div>
     </div>
-
-    
 
     <div id="window2" class="window" style="display:none;">
       <div class="title-bar" onmousedown="startDrag(event, 'window2')">
@@ -479,9 +567,6 @@ body:after {
         </div>
     </div>
 
-
-
-
     <div class="comment-box">
       <input type="text" id="commentInput" placeholder="Add a comment..." />
       <button onclick="addComment()">Post Comment</button>
@@ -506,12 +591,9 @@ body:after {
     </div>
   </div>
 
-  
-
   <script src="music.js"></script>
+
   <script>
-
-
 const phrases = [
     "unlink the world, unlock the rest",
     "explore the unseen, reveal the hidden",
@@ -545,11 +627,9 @@ const phrases = [
     }
   }
 
-  
   window.onload = () => {
     typeText();
   };
-
 
     function garfieldify() {
         window.location.href = 'garfield.html';
@@ -585,8 +665,6 @@ const phrases = [
     function openGarfWindow() {
       openWindow('window6');
     }
-
-    
 
     function openWindow(windowId) {
       const windowElem = document.getElementById(windowId);
@@ -640,7 +718,6 @@ const phrases = [
       }
     }
 
-    
     function updateClock() {
       const clock = document.getElementById('clock');
       const now = new Date();
@@ -657,6 +734,57 @@ const phrases = [
               playMedia();
           }
       });
+
+      function createManiaWindows() {
+    const totalWindows = 5; 
+    let loadedWindows = 0; 
+
+    for (let i = 0; i < totalWindows; i++) {
+        const windowDiv = document.createElement('div');
+        windowDiv.className = 'window';
+        windowDiv.innerHTML = `
+            <div class="title-bar">
+                <span>ERROR ERROR</span>
+                <button aria-label="Close" onclick="this.parentElement.parentElement.style.display='none'">X</button>
+            </div>
+            <div class="loading">
+                <img src="loading.gif" alt="Loading..." />
+                <span>Lain Mania Has Begun</span>
+            </div>
+        `;
+        
+        
+        const windowWidth = 300; 
+        const windowHeight = 100; 
+
+      
+        const x = Math.random() * (window.innerWidth - windowWidth);
+        const y = Math.random() * (window.innerHeight - windowHeight - 40);
+
+        windowDiv.style.left = `${x}px`;
+        windowDiv.style.top = `${y}px`;
+        document.body.appendChild(windowDiv);
+
+        
+        setTimeout(() => {
+            windowDiv.querySelector('.loading').style.display = 'none';
+            windowDiv.style.display = 'block'; 
+            loadedWindows++; 
+
+            
+            if (loadedWindows === totalWindows) {
+                
+                setTimeout(redirectAfterLoad, 2000); 
+            }
+        }, 3000 + (i * 500)); 
+    }
+}
+
+function redirectAfterLoad() {
+
+    window.location.href = 'terminal.html';
+}
+
   </script>
 </body>
 </html>
