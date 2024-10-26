@@ -280,7 +280,7 @@ body:after {
         position: absolute;
         bottom: 40px; 
         left: 3%;
-        z-index: 20;
+        z-index: 9;
         width: 500px;
     }
 
@@ -288,7 +288,7 @@ body:after {
         position: absolute;
         bottom: 300px; 
         left: 28%;
-        z-index: 21;
+        z-index: 9;
         font-family: url('countdown.ttf'), sans-serif;
         font-size: 36px; 
         color: white;
@@ -449,9 +449,9 @@ body:after {
                 <div id="artist">Artist</div>&nbsp;-&nbsp;<div id="songTitle">Song</div>
             </div>
             <div class="controls" style="margin-top:10px;margin-bottom:7px;">
-                <a onclick="previousAudio()" style="margin-right:10px;"><img src="icons/back.png"></a>
-                <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="icons/play.png"></a>
-                <a onclick="nextAudio()"><img src="icons/next.png"></a>
+                <a onclick="previousAudio()" style="margin-right:10px;"><img src="back.png"></a>
+                <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="play.png"></a>
+                <a onclick="nextAudio()"><img src="next.png"></a>
             </div>
         </div>
     </div>
@@ -591,9 +591,14 @@ body:after {
     </div>
   </div>
 
+
+
   <script src="music.js"></script>
 
   <script>
+    
+
+
 const phrases = [
     "unlink the world, unlock the rest",
     "explore the unseen, reveal the hidden",
