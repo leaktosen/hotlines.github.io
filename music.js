@@ -2,35 +2,20 @@ var audio = document.getElementById("audio");
 var playPauseButton = document.getElementById("playPauseButton");
 var audioFiles = [
         {
-        src: "songs/pinnedpaste.mp3",
-        artist: "James Bandz",
-        song: "Pinned Paste"
-        },
-        {
-        src: "songs/elfen.mp3",
-        artist: "Hi-C",
-        song: "elfen lied 222"
-        },
-        {
         src: "songs/shotgun.mp3",
         artist: "Sematary",
         song: "Shotgun"
         },
         {
         src: "songs/bah.mp3",
-        artist: "Sematary",
+        artist: "Sematary, Ghost Mountain",
         song: "Broken Angel Hospital"
         },
         {
-        src: "songs/finale.mp3",
-        artist: "Dante Red",
-        song: "Finale"
+        src: "songs/flowers.mp3",
+        artist: "Sematary, Ghost Mountain",
+        song: "Flowers"
         },
-        {
-        src: "songs/hallow.mp3",
-        artist: "Buckshot",
-        song: "Hallow'd Ground"
-            },
 
 
         
