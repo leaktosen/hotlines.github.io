@@ -16,6 +16,16 @@ var audioFiles = [
         artist: "Sematary, Ghost Mountain",
         song: "Flowers"
         },
+        {
+        src: "songs/finale.mp3",
+        artist: "dante red",
+        song: "finale"
+        },
+        {
+        src: "songs/pinnedpaste.mp3",
+        artist: "james bandz",
+        song: "pinned paste"
+        },
 
 
         
