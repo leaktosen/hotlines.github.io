@@ -9,7 +9,7 @@ var audioFiles = [
         {
         src: "songs/bah.mp3",
         artist: "Sematary, Ghost Mountain",
-        song: "Broken Angel Hospital"
+        song: "BAH"
         },
         {
         src: "songs/flowers.mp3",
