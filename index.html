@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hotlin.es</title>
+    <title>Hotlines</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body,
@@ -93,6 +93,45 @@ html {
 .odin-owner-tag {
     color: pink;
 }
+
+        .audwin {
+            position: absolute; 
+            top: 10px; 
+            right: 15px; 
+            max-width: 200px; 
+            z-index: 20; 
+        }
+
+        .audio-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .controls a img {
+            height: 13px;
+            cursor: pointer;
+        }
+        
+        .controls {
+            user-select: none;
+        }
+
+        #songInfo {
+            font-family: 'VCR OSD Mono';
+            font-size: 12px;
+        }
+
+        #songTitle {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #songInfo {
+            display: flex;
+        }
     </style>
 </head>
 
@@ -156,6 +195,22 @@ html {
           <p class="owner-description">cut radically different</p>
       </div>
     </div>
+
+      <div class="audwin">
+       <div class="audio-controls">
+          <p style="font-size:13px;margin-bottom:5px;">Now Playing:</p>
+          <div id="songInfo" class="text-center">
+              <div id="artist">Artist</div>&nbsp;-&nbsp;<div id="songTitle">Song</div>
+          </div>
+          <div class="controls" style="margin-top:10px;margin-bottom:7px;">
+              <a onclick="previousAudio()" style="margin-right:10px;"><img src="icons/back.png"></a>
+              <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="icons/play.png"></a>
+              <a onclick="nextAudio()"><img src="icons/next.png"></a>
+          </div>
+       </div>
+      </div>
+
+    <audio id="audio"></audio>
 
     <div class="canvas-container">
         <canvas id="particleCanvas"></canvas>
@@ -269,7 +324,7 @@ html {
             }
         }
     </script>
-  <script src="music.js"></script>
+    <script src="music.js"></script>
 </body>
 
 </html>
